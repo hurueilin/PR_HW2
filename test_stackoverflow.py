@@ -8,6 +8,8 @@ mu_a, mu_b = a.mean(axis=0).reshape(-1,1), b.mean(axis=0).reshape(-1,1)
 Sw = np.cov(a.T) + np.cov(b.T)
 inv_S = np.linalg.inv(Sw)
 res = inv_S.dot(mu_a-mu_b)  # the trick
+
+print(res)
 ####
 # more general solution
 #
@@ -17,7 +19,6 @@ res = inv_S.dot(mu_a-mu_b)  # the trick
 # res = res / np.linalg.norm(res)
 
 plt.plot([-res[0], res[0]], [-res[1], res[1]]) # this is the solution
-plt.show()
 plt.plot(mu_a[0], mu_a[1], 'cx')
 plt.plot(mu_b[0], mu_b[1], 'yx')
 plt.gca().axis('square')
@@ -32,4 +33,4 @@ for pt in a:
 for pt in b:
     prj = r * r.dot(pt) / n2
     plt.plot([prj[0], pt[0]], [prj[1], pt[1]], 'r.:', alpha=0.2)
-# plt.show()
+plt.show()
